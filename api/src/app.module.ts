@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -11,12 +12,13 @@ import { AppService } from './app.service';
       type: 'postgres',
       username: process.env.DATABASE_USER_NAME,
       password: process.env.DATABASE_PASSWORD,
-      name: process.env.DATABASE_NAME,
+      // name: process.env.DATABASE_NAME,
       host: process.env.DATABASE_HOST,
       port: Number(process.env.DATABASE_PORT),
       autoLoadEntities: true,
       synchronize: true,
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
